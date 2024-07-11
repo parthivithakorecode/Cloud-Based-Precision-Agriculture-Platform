@@ -5,6 +5,9 @@ This Arduino sketch allows you to connect your device to a WiFi network and send
 > [!WARNING]
 > This code is for hobbyists for learning purposes. Not recommended for production use!!
 
+## Schematic
+<img src="Schematic_Smart-Agricultural-Monitoring-System.svg">
+
 ## Set-Up Project in Anedya Dashboard
 
 Following steps ouline the overall steps to setup a project. You can read more about the steps [here](https://docs.anedya.io/getting-started/quickstart/#create-a-new-project)
