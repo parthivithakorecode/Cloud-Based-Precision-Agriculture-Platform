@@ -19,6 +19,8 @@ This version of the code allows users to monitor sensor data only. It includes f
 - Handle basic error conditions and connection retries.
 
 ### v2-mqtt-alerts (Version 2 - MQTT with Email Alerts)
+> [!WARNING]
+> Version 2 is under process 
 
 In Version 2, email alerts have been added for proactive monitoring. Updates include:
 - Integration with email alerts to notify users of critical sensor readings.
