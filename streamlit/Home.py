@@ -9,7 +9,7 @@ from utils.anedya import anedya_getValue
 from utils.anedya import anedya_setValue
 from utils.anedya import fetchHumidityData
 from utils.anedya import fetchTemperatureData
-from utils.anedya import fetchHumidityData
+from utils.anedya import fetchMoistureData
 
 nodeId = "NODE-ID"  # get it from anedya dashboard -> project -> node 
 apiKey = "YOUR-API-KEY"  # aneyda project apikey
