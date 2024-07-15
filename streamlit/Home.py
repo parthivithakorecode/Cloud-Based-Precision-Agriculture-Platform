@@ -110,9 +110,6 @@ def drawDashboard():
     charts = st.columns(3, gap="small")
     with charts[0]:
         st.subheader(body="Humidity ", anchor=False)
-        if humidityData.empty:
-            st.write("No Data Available!")
-        else:
             humidity_chart_an = alt.Chart(data=humidityData).mark_area(
                 line={'color': '#ffec1f'},
                 color=alt.Gradient(
@@ -145,9 +142,6 @@ def drawDashboard():
 
     with charts[1]:
         st.subheader(body="Temperature", anchor=False)
-        if temperatureData.empty:
-            st.write("No Data Available!")
-        else:
             temperature_chart_an = alt.Chart(data=temperatureData).mark_area(
                 line={'color': '#ff1f32'},
                 color=alt.Gradient(
@@ -180,9 +174,6 @@ def drawDashboard():
 
     with charts[2]:
         st.subheader(body="Moisture ", anchor=False)
-        if moistureData.empty:
-            st.write("No Data Available!")
-        else:
             moisture_chart_an = alt.Chart(data=moistureData).mark_area(
                 line={'color': '#1fa2ff'},
                 color=alt.Gradient(
