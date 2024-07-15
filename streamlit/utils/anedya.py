@@ -5,8 +5,8 @@ import streamlit as st
 import pandas as pd
 import pytz  # Add this import for time zone conversion
 
-nodeId = ""
-apiKey = ""
+nodeId = "157743b8-3975-11ef-9ecc-a1461caa74a3"
+apiKey = "a97a55bb0925ad628f6d2c4d7664f4b0919e198e2720504d2c02901dc7387408"
 
 
 def anedya_config(NODE_ID, API_KEY):
