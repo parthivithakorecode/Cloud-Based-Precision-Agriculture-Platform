@@ -11,8 +11,8 @@ from utils.anedya import fetchHumidityData
 from utils.anedya import fetchTemperatureData
 from utils.anedya import fetchMoistureData
 
-nodeId = "NODE-ID"  # get it from anedya dashboard -> project -> node 
-apiKey = "YOUR-API-KEY"  # aneyda project apikey
+nodeId = "157743b8-3975-11ef-9ecc-a1461caa74a3"  # get it from anedya dashboard -> project -> node 
+apiKey = "a97a55bb0925ad628f6d2c4d7664f4b0919e198e2720504d2c02901dc7387408"  # aneyda project apikey
 
 st.set_page_config(page_title="Dashboard", layout="wide")
 
@@ -31,7 +31,6 @@ humidityData = pd.DataFrame()
 temperatureData = pd.DataFrame()
 moistureData = pd.DataFrame()
 
-
 def main():
 
     anedya_config(nodeId, apiKey)
@@ -46,7 +45,7 @@ def main():
 
     if "CurrentTemperature" not in st.session_state:
         st.session_state.CurrentTemperature = 0
-
+    
     if "CurrentMoisture" not in st.session_state:
         st.session_state.CurrentMoisture = 0
 
@@ -65,7 +64,7 @@ def drawLogin():
     with cols[0]:
         pass
     with cols[1]:
-        st.title("Dashboard Login", anchor=False)
+        st.title("Anedya Demo Dashboard", anchor=False)
         username_inp = st.text_input("Username")
         password_inp = st.text_input("Password", type="password")
         submit_button = st.button(label="Submit")
@@ -93,7 +92,7 @@ def drawDashboard():
         st.session_state.LoggedIn = False
         st.rerun()
 
-    st.markdown("This dashboard provides live view of the Farm.")
+    st.markdown("This dashboard provides live view of the Farm")
 
     st.subheader(body="Current Status", anchor=False)
     cols = st.columns(3, gap="medium")
@@ -102,19 +101,21 @@ def drawDashboard():
     with cols[1]:
         st.metric(label="Temperature", value=str(st.session_state.CurrentTemperature) + "  °C")
     with cols[2]:
-        st.metric(label="Moisture", value=str(st.session_state.CurrentMoisture) )
-
+        st.metric(label="Moisture", value=str(st.session_state.CurrentMoisture))    
     # with cols[3]:
     #    st.metric(label="Refresh Count", value=count)
 
-    charts = st.columns(3, gap="small")
+    charts = st.columns(1, gap="small")
     with charts[0]:
         st.subheader(body="Humidity ", anchor=False)
+        if humidityData.empty:
+            st.write("No Data Available!")
+        else:
             humidity_chart_an = alt.Chart(data=humidityData).mark_area(
-                line={'color': '#ffec1f'},
+                line={'color': '#1fff7c'},
                 color=alt.Gradient(
                     gradient='linear',
-                    stops=[alt.GradientStop(color='#ffec1f', offset=1),
+                    stops=[alt.GradientStop(color='#1fff7c', offset=1),
                         alt.GradientStop(color='rgba(255,255,255,0)', offset=0)],
                     x1=1,
                     x2=1,
@@ -130,7 +131,7 @@ def drawDashboard():
                 ),  # T indicates temporal (time-based) data
                 y=alt.Y(
                     "aggregate:Q",
-                    scale=alt.Scale(domain=[20, 100]),
+                    scale=alt.Scale(domain=[0, 100]),
                     axis=alt.Axis(title="Humidity (%)", grid=True, tickCount=10),
                 ),  # Q indicates quantitative data
                 tooltip=[alt.Tooltip('Datetime:T', format="%Y-%m-%d %H:%M:%S", title="Time",),
@@ -140,8 +141,14 @@ def drawDashboard():
             # Display the Altair chart using Streamlit
             st.altair_chart(humidity_chart_an, use_container_width=True)
 
-    with charts[1]:
+
+    charts = st.columns(1, gap="small")  # Create a new column
+
+    with charts[0]:
         st.subheader(body="Temperature", anchor=False)
+        if temperatureData.empty:
+            st.write("No Data Available!")
+        else:
             temperature_chart_an = alt.Chart(data=temperatureData).mark_area(
                 line={'color': '#ff1f32'},
                 color=alt.Gradient(
@@ -172,8 +179,14 @@ def drawDashboard():
 
             st.altair_chart(temperature_chart_an, use_container_width=True)
 
-    with charts[2]:
+
+    charts = st.columns(1, gap="small")  # Create a new column
+
+    with charts[0]:
         st.subheader(body="Moisture ", anchor=False)
+        if moistureData.empty:
+            st.write("No Data Available!")
+        else:
             moisture_chart_an = alt.Chart(data=moistureData).mark_area(
                 line={'color': '#1fa2ff'},
                 color=alt.Gradient(
@@ -194,8 +207,8 @@ def drawDashboard():
                 ),  # T indicates temporal (time-based) data
                 y=alt.Y(
                     "aggregate:Q",
-                    scale=alt.Scale(domain=[0, 1024]),
-                    axis=alt.Axis(title="Moisture ", grid=True, tickCount=10),
+                    scale=alt.Scale(domain=[0, 1100]),
+                    axis=alt.Axis(title="Moisture", grid=True, tickCount=10),
                 ),  # Q indicates quantitative data
                 tooltip=[alt.Tooltip('Datetime:T', format="%Y-%m-%d %H:%M:%S", title="Time",),
                         alt.Tooltip('aggregate:Q', format="0.2f", title="Value")],
