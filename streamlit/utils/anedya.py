@@ -244,8 +244,7 @@ def fetchTemperatureData() -> pd.DataFrame:
         print(response_message)
         value = pd.DataFrame()
         return value
-
-
+    
 
 @st.cache_data(ttl=30, show_spinner=False)
 def fetchMoistureData() -> pd.DataFrame:
