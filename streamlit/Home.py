@@ -11,8 +11,8 @@ from utils.anedya import fetchHumidityData
 from utils.anedya import fetchTemperatureData
 from utils.anedya import fetchMoistureData
 
-nodeId = "157743b8-3975-11ef-9ecc-a1461caa74a3"  # get it from anedya dashboard -> project -> node 
-apiKey = "a97a55bb0925ad628f6d2c4d7664f4b0919e198e2720504d2c02901dc7387408"  # aneyda project apikey
+nodeId = "0195e651-cc0c-731f-96d3-4e89384d3924"  # get it from anedya dashboard -> project -> node 
+apiKey = "1eed2864228e1537395bd082cb098f5d29f6d00610d0bb60520a49f3878f1dce"  # aneyda project apikey
 
 st.set_page_config(page_title="Dashboard", layout="wide")
 
@@ -64,7 +64,7 @@ def drawLogin():
     with cols[0]:
         pass
     with cols[1]:
-        st.title("Smart Agriculture Dashboard", anchor=False)
+        st.title("Cloud-Based Precision Agriculture Platform", anchor=False)
         username_inp = st.text_input("Username")
         password_inp = st.text_input("Password", type="password")
         submit_button = st.button(label="Submit")
@@ -82,7 +82,7 @@ def drawLogin():
 def drawDashboard():
     headercols = st.columns([1, 0.1, 0.1], gap="small")
     with headercols[0]:
-        st.title("Anedya Dashboard by Dhruv", anchor=False)
+        st.title("Precision Agriculture Platform by Parthivi", anchor=False)
     with headercols[1]:
         st.button("Refresh")
     with headercols[2]:
