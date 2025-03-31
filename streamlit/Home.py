@@ -82,7 +82,7 @@ def drawLogin():
 def drawDashboard():
     headercols = st.columns([1, 0.1, 0.1], gap="small")
     with headercols[0]:
-        st.title("Precision Agriculture Platform by Parthivi", anchor=False)
+        st.title("Precision Agriculture Platform", anchor=False)
     with headercols[1]:
         st.button("Refresh")
     with headercols[2]:
